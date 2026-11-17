@@ -1,9 +1,10 @@
 FILE := ../compile_flags.txt
 CFLAGS := $(strip $(file < $(FILE)))
 
-hello : src/hello.c
-	$(CC) $(CFLAGS) -o $@ $^
+build/hello : src/hello.c
+	mkdir -p $(@D)
+	$(CC) $(CFLAGS) -o $@ $<
 
 .PHONY : clean
 clean :
-	$(RM) hello
+	$(RM) -r build
